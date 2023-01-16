@@ -1,0 +1,66 @@
+using System;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+namespace LetterChangeNum
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+          
+
+        {
+            static void Main(string[] args)
+            {
+                string[] input = Console.ReadLine()
+                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+
+                double multiplyOrDivide = 0;
+                double resultNumber = 0;
+                double sum = 0;
+
+                for (int i = 0; i < input.Length; i++)
+                {
+                    string word = input[i];
+
+                    char firstSymbol = word[0];
+                    char lastSymbol = word[word.Length - 1];
+
+                    int positionFirs = char.ToUpper(firstSymbol) - 64;
+                    int positionLast = char.ToUpper(lastSymbol) - 64; 
+
+                    word = word.Substring(1, word.Length - 2); 
+                    double number = double.Parse(word);
+
+                    if (char.IsUpper(firstSymbol))
+                    {
+                        multiplyOrDivide = number / positionFirs;
+                    }
+                    else
+                    {
+                        multiplyOrDivide = number * positionFirs;
+                    }
+
+                    if (char.IsUpper(lastSymbol))
+                    {
+                        resultNumber = multiplyOrDivide - positionLast;
+                    }
+                    else
+                    {
+                        resultNumber = multiplyOrDivide + positionLast;
+                    }
+
+                    sum += resultNumber;
+                }
+
+                Console.WriteLine($"{sum:F2}");
+            }
+        }
+    }
+}
+    }
+

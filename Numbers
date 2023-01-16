@@ -1,0 +1,93 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace NumbersEx2
+{
+
+	public class Numbers
+	{
+		public static void Main(string[] args)
+		{
+
+
+			List<int> numbers = Console.ReadLine()
+				.Split(' ')
+				.Select(int.Parse)
+				.ToList();
+			string[] commands = Console.ReadLine()
+				.Split(' ')
+				.ToArray();
+            string input = Console.ReadLine();
+            while (input != "Finish")
+            {
+                
+
+                string[] inputParams = input.Split();
+
+                string command = inputParams[0];
+                int value = 0;
+
+                switch (command)
+                {
+                    case "Add":
+                        {
+                          
+                            numbers.Add(value);
+                            break;
+                        }
+
+                    case "Remove":
+                        {
+
+                            value = int.Parse(inputParams[2]);
+                            numbers.Remove(value);
+                            if (numbers.Contains(value))
+                            {
+                               
+                                numbers.Remove((value));
+                            }
+                            break;
+                        }
+
+                    case "Replace":
+                        {
+                             value = int.Parse((inputParams[2]));
+                            int replacement = int.Parse(input.Split(" ")[2]);
+                            if (numbers.Contains(value)) 
+                            {
+                                int index = numbers.IndexOf(value);
+                               numbers.RemoveAt(index);
+                            }
+                            break;
+                        }
+
+                   
+
+                    case "Collapse":
+                         value = int.Parse((string)inputParams[0]);
+                        for (int i = 0; i < numbers.Count; i++)
+                        {
+                            int num = numbers[i];
+                            if (num < value)
+                            {
+                                numbers.RemoveAt(i);
+                                i--;
+                            }
+                        }
+                        break;
+
+                }
+
+                input = Console.ReadLine();
+            }
+
+            Console.WriteLine(string.Join(" ", numbers));
+        }
+    }
+}
+				
+				
+				
+			
+	

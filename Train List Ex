@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+
+namespace TrainEx1
+{
+    internal class Program
+    {
+        private const int V = 0;
+
+        static void Main(string[] args)
+        {
+            int numbersOfWagons = int.Parse(Console.ReadLine());
+            int[] passegners = new int[numbersOfWagons];
+            int sumPassagners = 0;  
+            for (int i = 0; i< numbersOfWagons; i++)
+            {
+                passegners[i] = int.Parse(Console.ReadLine());
+               
+                sumPassagners = sumPassagners + passegners[i];
+            }
+            for (int i = 0; i < numbersOfWagons; i++)
+            {
+                Console.Write(passegners[i] + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine(sumPassagners);
+
+
+
+
+        }
+    }
+}

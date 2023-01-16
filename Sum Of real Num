@@ -1,0 +1,61 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Shopping3
+{
+    internal class Program
+    {
+        static void Main(string[] args, List<string> important)
+        {
+            List<string> shoppingList = Console.ReadLine()
+                     .Split('!')
+                     .ToList();
+
+            string command = Console.ReadLine();
+
+            while (command != "Go Shopping!")
+            {
+                string[] cmdAruments = command.Split(' ').ToArray();
+                string commandName = cmdAruments[0];
+                string commandItem = cmdAruments[1];
+
+
+                if (commandName == "Add")
+                {
+                    if (!shoppingList.Contains(commandItem))
+                    {
+                        shoppingList.Insert(0, commandItem);
+                    }
+                }
+               
+                else if (commandName == "Important")
+                {
+                    string commandOldItem = cmdAruments[1];
+                    string commandNewItem = cmdAruments[2];
+
+                    if (shoppingList.Contains(commandOldItem))
+                    {
+                        int index = shoppingList.IndexOf(commandOldItem);
+                        shoppingList.RemoveAt(index);
+                        shoppingList.Insert(index, commandNewItem);
+                    }
+
+                }
+                else if (commandName == "Remove")
+                {
+                    if (shoppingList.Contains(commandItem))
+                    {
+                        shoppingList.Remove(commandItem);
+                        shoppingList.Add(commandItem);
+                    }
+                }
+
+                command = Console.ReadLine();
+            }
+
+            Console.WriteLine(string.Join(", ", shoppingList));
+        }
+    }
+}

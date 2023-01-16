@@ -1,0 +1,35 @@
+using System;
+
+namespace DataTypes
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = int.Parse(Console.ReadLine());
+            double nums = double.Parse(Console.ReadLine());
+            string name = Console.ReadLine();
+
+            method(num, nums, name);
+
+        }
+
+        private static void method(int num, double nums, string name)
+        {
+            if (num == num * 2)
+            {
+                Console.WriteLine(num);
+            }
+            else if (nums == nums * 1.5)
+            {
+
+                Console.WriteLine(nums);
+
+            }
+            else if (name == name)
+            {
+                Console.WriteLine($"{name}");
+            }
+        }
+    }
+}

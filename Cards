@@ -1,0 +1,92 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace P03Cards
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> deck = Console.ReadLine()
+                 .Split(":")
+                 .ToList();
+            List<string> newDeck = NewMethod();
+
+            string input;
+            while ((input = Console.ReadLine()) != "Ready")
+            {
+                string[] cmdArgs = input
+                     .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+                string cmdType = cmdArgs[0];
+                string cardName = cmdArgs[1];
+
+                if (cmdType != "Add")
+                {
+                    if (cmdType == "Insert")
+                    {
+                        int index = int.Parse(cmdArgs[2]);
+                        if (deck.Contains(cardName) && (index >= 0 && index < deck.Count))
+                        {
+                            newDeck.Insert(index, cardName);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error!");
+                        }
+                    }
+                    else if (cmdType == "Remove")
+                    {
+                        if (deck.Contains(cardName))
+                        {
+                            newDeck.Remove(cardName);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Card not found.");
+                        }
+                    }
+                    else if (cmdType == "Swap")
+                    {
+                        string newCardName = cmdArgs[2];
+                        int indexOne = newDeck.IndexOf(cardName);
+                        int indexTwo = newDeck.IndexOf(newCardName);
+
+                        string tmp = newDeck[indexOne];
+                        newDeck[indexOne] = newDeck[indexTwo];
+                        newDeck[indexTwo] = tmp;
+                    }
+
+                    else if (cmdType + " deck" == "Shuffle deck")
+                    {
+                        newDeck.Reverse();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+
+                    if (deck.Contains(cardName))
+                    {
+                        newDeck.Add(cardName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Card not found.");
+                    }
+                }
+            }
+            Console.WriteLine(string.Join(" ", newDeck));
+        }
+
+        private static List<string> NewMethod()
+        {
+            return new List<string>();
+        }
+        
+    }
+}

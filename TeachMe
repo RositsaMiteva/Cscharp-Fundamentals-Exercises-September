@@ -1,0 +1,25 @@
+using System;
+using System.Linq;
+
+namespace teachme
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double[] numbers = Console.ReadLine()
+                .Split()
+                .Select(double.Parse)
+                .ToArray();
+            double[] roundedNumbers = new double[numbers.Length];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                roundedNumbers[i] = Math.Ceiling(numbers[i]);
+            }
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.WriteLine($"{numbers[i]} ---> {roundedNumbers[i]}");
+            }
+        }
+    }
+}
